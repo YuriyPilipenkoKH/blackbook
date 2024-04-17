@@ -2,4 +2,77 @@
 @tailwind components;
 @tailwind utilities;
 
+:root {
+  --accent-color: #ff8356;
+  --fone-color: #fef9f9;
 
+  --yellow: #ffc107;
+  --white: #ffffff;
+  --white-bg: #fdf7f2;
+
+  --black: #111111;
+  --medium-blue: #76bcf9;
+  --blue: #54adff;
+  --light-blue: #cce4fb;
+  --green: #159638;
+  --red: #f43f5e;
+  --grey: #888888;
+
+}
+
+body {
+  background-color: #0e462d;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  transition: all 1s ease;
+  margin: 0;
+  padding: 0;
+}
+
+
+ul, li {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+a {
+  text-decoration: none;
+  color: inherit;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p {
+  margin: 0;
+  padding: 0;
+}
+
+img {
+  display: block;
+  max-width: 100%;
+  height: auto;
+}
+
+.visually-hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  margin: -1px;
+  padding: 0;
+  overflow: hidden;
+  border: 0;
+  clip: rect(0 0 0 0);
+}
+
+/* clerk styles */
+.cl-card{
+  width: 280px;
+  @media screen and (min-width: 768px) {
+    width: 35rem;
+}
+}
