@@ -4,7 +4,7 @@ import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { createClientSchema, createClientSchemaType } from '@/models/createClient';
 import { Input } from 'antd';
-import { AuthError, Form_CreateNew } from './FormStyles.styled';
+import { AuthError, Field, Form_CreateNew } from './FormStyles.styled';
 
 
 
@@ -43,7 +43,9 @@ const CreateClientForm: React.FC<CreateClientFormProps> = ({
         isDirty,
         isValid ,
         isSubmitting,
+        dirtyFields
     } = formState
+
 
     useEffect(() => {
         if(canceling) reset()
@@ -51,29 +53,37 @@ const CreateClientForm: React.FC<CreateClientFormProps> = ({
 
   return (
     <>
-    <Form_CreateNew >
+    <Form_CreateNew noValidate>
         <label >firstName:
-          <input 
+          <Field 
             {...register('firstName')}
             type="text"
+            validated ={!errors.firstName ? true : false}
+
           />
         </label >
         <label >lastName:
-          <Input 
+          <Field  
             {...register('lastName')}
             type="text"
+            validated ={!errors.lastName ? true : false}
+
           />
         </label >
         <label >email:
-          <Input 
+          <Field 
             {...register('email')}
             type="text"
+            validated ={!errors.email ? true : false}
+    
           />
         </label >
         <label >phone:
-          <Input 
+          <Field  
             {...register('phone')}
             type="text"
+            validated ={!errors.phone ? true : false}
+       
           />
         </label >
         <div>

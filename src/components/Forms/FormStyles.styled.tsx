@@ -30,6 +30,37 @@ export const baseInputStyles = css`
     color: #222;
     font-weight: 600;
 `
+export const antInputStyles = css`
+    border: 2px solid #777;
+    /* border: 3px solid #4096ff; */
+    background-color: #f5f5f5;
+    color: #333;
+    font-size: 14px;
+    border-radius: 0.5rem;
+    padding: 4px 16px;
+    width: 100%;
+    height: 32px;
+    transition: all 0.2s;
+`
+// export const Field = styled('input')`
+
+// `
+interface FieldProps {
+    validated: boolean;
+
+  }
+//   #f5154dcd` : `#2196f3cc` 
+
+  export const Field = styled('input', {
+    shouldForwardProp: (prop: string) =>
+      isPropValid(prop) && !['validated'].includes(prop),
+  })<FieldProps>`
+    ${antInputStyles};
+    ${({ validated }) => ({
+      borderColor: validated  ? `#2196f3cc` : `#f5154dcd` ,
+      outline: 'none' ,
+    })}
+  `;
 
 export const AuthError = styled('div')`
     color: #eee;
