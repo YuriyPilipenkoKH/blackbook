@@ -50,6 +50,8 @@ interface FieldProps {
 
   }
 //   #f5154dcd` : `#2196f3cc` 
+// rgba(70, 90, 126, 0.4)
+//rgb(232, 240, 254),
 
   export const Field = styled('input', {
     shouldForwardProp: (prop: string) =>
@@ -77,6 +79,8 @@ export const AuthError = styled('div')`
     overflow: hidden; 
     text-overflow: ellipsis; 
     white-space: nowrap; 
+
+    margin-top: 1rem;
 `;
 
 

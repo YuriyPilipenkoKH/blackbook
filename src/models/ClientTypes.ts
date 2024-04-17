@@ -1,4 +1,4 @@
-type Client = {
+type ClientTypes = {
     _id: string;
     firstName: string;
     lastName: string;
@@ -6,4 +6,4 @@ type Client = {
     phone: string;
 
 }
-export default Client
+export default ClientTypes

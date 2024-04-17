@@ -5,6 +5,8 @@ import { zodResolver } from '@hookform/resolvers/zod';
 import { createClientSchema, createClientSchemaType } from '@/models/createClient';
 import { Input } from 'antd';
 import { AuthError, Field, Form_CreateNew } from './FormStyles.styled';
+import { Btn } from '../Button/Button';
+import { createClient } from '@/actions/create';
 
 
 
@@ -23,17 +25,14 @@ const CreateClientForm: React.FC<CreateClientFormProps> = ({
     const [logError, setLogError] = useState<string>('')
     const {
         register, 
-        handleSubmit,
         formState,
         reset,
-        watch
     } = useForm<createClientSchemaType>({
         defaultValues: {
             firstName: '',
             lastName: '',
             email: '',
             phone: '',
-            
         },
             mode:'all',
             resolver: zodResolver(createClientSchema),
@@ -43,7 +42,6 @@ const CreateClientForm: React.FC<CreateClientFormProps> = ({
         isDirty,
         isValid ,
         isSubmitting,
-        dirtyFields
     } = formState
 
 
@@ -53,7 +51,10 @@ const CreateClientForm: React.FC<CreateClientFormProps> = ({
 
   return (
     <>
-    <Form_CreateNew noValidate>
+    <Form_CreateNew 
+    action={createClient}
+    autoComplete="off"
+    noValidate>
         <label >firstName:
           <Field 
             {...register('firstName')}
@@ -97,6 +98,15 @@ const CreateClientForm: React.FC<CreateClientFormProps> = ({
         )}
         {logError && <AuthError className="autherror">{logError}</AuthError>}
            </div>
+        <Btn 
+          className='contact-create w-[80px] h-[36px] rounded-md absolute bottom-[-21px]'
+          disabled={isSubmitting || !isDirty || !isValid}
+          type="submit"  
+          >
+           {( isSubmitting ) 
+            ? "Process" 
+            : "Send" }
+        </Btn>
       
     </Form_CreateNew>
     </>

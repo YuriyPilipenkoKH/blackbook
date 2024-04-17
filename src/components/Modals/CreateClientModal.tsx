@@ -47,7 +47,7 @@ const CreateClientModal: React.FC = () => {
         onCancel={handleCancel}
         footer={[
         <CancelBtn
-            className='cancel_btn w-[80px]'
+            className='cancel_btn w-[80px] ml-[200px]'
             key="back" 
             disabled={ isSubmitting }
             onClick={handleCancel}>
