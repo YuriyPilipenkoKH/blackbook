@@ -1,3 +1,5 @@
+'use client'
+
 import { SAddNewBtn, SBtn, SBtnDelete, SCancelBtn, SEditBtn, SFlatBtn } from "./Button.styled";
 
   interface ButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
