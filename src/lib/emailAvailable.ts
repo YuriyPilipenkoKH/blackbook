@@ -8,7 +8,6 @@ interface UserData {
 export const emailAvailable = async (fieldValue: string): Promise<string | undefined> => {
 
     try {
-
         // const response = await User.find({email})
         const response = await fetch(`${process.env.NEXT_PUBLIC_DOMAIN}api/grab?email=${fieldValue}`);
         const data  = await response.json();

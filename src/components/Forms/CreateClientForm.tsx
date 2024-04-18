@@ -8,6 +8,7 @@ import { AuthError, Field, Form_CreateNew } from './FormStyles.styled';
 import { Btn } from '../Button/Button';
 import { createClient } from '@/actions/create';
 import { emailAvailable } from '@/lib/emailAvailable';
+import { phoneAvailable } from '@/lib/phoneAvailable';
 
 
 interface CreateClientFormProps {
@@ -22,8 +23,9 @@ const CreateClientForm: React.FC<CreateClientFormProps> = ({
     setOpen,
 }) => {
     const [logError, setLogError] = useState<string>('')
+    const [phoneError, setPhoneError] = useState<string>('')
     const ref = useRef<HTMLFormElement>(null)
-    console.log(ref)
+    console.log('phoneError',  phoneError)
 
     const {
         register, 
@@ -89,6 +91,31 @@ const CreateClientForm: React.FC<CreateClientFormProps> = ({
         checkEmailAvailability();
     }, [emailValue, errors.email]);     
 
+    const phoneValue = watch("phone");
+    useEffect(() => {
+        const checkPhoneAvailability = async () => {
+        if (phoneValue && !errors.phone) {
+        try {
+            const result = await phoneAvailable(phoneValue);
+            if (result !== undefined) {
+                // Email already exists, set logError
+                setPhoneError(result);
+            } else {
+                // Reset logError if email is available
+                setPhoneError('');
+            }
+        } catch (error) {
+            // Handle error if emailAvailable function fails
+            console.error('Error checking phone number availability:', error);
+        }
+        }
+        };
+    
+        checkPhoneAvailability();
+    }, [phoneValue, errors.phone]);     
+
+
+
   return (
     <>
     <Form_CreateNew 
@@ -127,7 +154,7 @@ const CreateClientForm: React.FC<CreateClientFormProps> = ({
           <Field  
             {...register('phone')}
             type="text"
-            validated ={!errors.phone ? true : false}
+            validated ={(!errors.phone && !phoneError) ? true : false}
        
           />
         </label >
@@ -140,7 +167,12 @@ const CreateClientForm: React.FC<CreateClientFormProps> = ({
             {!errors.firstName && !errors.lastName && !errors.email && errors.phone && <div>{errors?.phone.message}</div>}
             </AuthError>
         )}
-        {logError && <AuthError className="autherror">{logError}</AuthError>}
+        {(logError || phoneError) && (
+            <AuthError className="autherror">
+                {logError && <div>{logError}</div>}
+                {!logError && phoneError && <div>{phoneError}</div>}
+            </AuthError>
+        )  }
            </div>
         <Btn 
           className='contact-create w-[80px] h-[36px] rounded-md absolute bottom-[-21px]'
