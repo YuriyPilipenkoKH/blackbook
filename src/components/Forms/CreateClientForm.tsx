@@ -1,13 +1,12 @@
 'use client'
-import { useState, useEffect } from 'react';
+
+import { useState, useEffect, useRef } from 'react';
 import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { createClientSchema, createClientSchemaType } from '@/models/createClient';
-import { Input } from 'antd';
 import { AuthError, Field, Form_CreateNew } from './FormStyles.styled';
 import { Btn } from '../Button/Button';
 import { createClient } from '@/actions/create';
-
 
 
 interface CreateClientFormProps {
@@ -16,15 +15,18 @@ interface CreateClientFormProps {
     canceling: boolean
 }
 
-
 const CreateClientForm: React.FC<CreateClientFormProps> = ({
     setIsSubmitting,
     canceling,
     setOpen,
 }) => {
     const [logError, setLogError] = useState<string>('')
+    const ref = useRef<HTMLFormElement>(null)
+    console.log(ref)
+
     const {
         register, 
+        handleSubmit,
         formState,
         reset,
     } = useForm<createClientSchemaType>({
@@ -44,6 +46,19 @@ const CreateClientForm: React.FC<CreateClientFormProps> = ({
         isSubmitting,
     } = formState
 
+    // const onSubmit = async (formData: createClientSchemaType) => {
+    //     setIsSubmitting(true);
+    //     try {
+    //         // Call server action
+    //         await createClient(formData);
+    //         // Reset form after successful submission
+    //         reset();
+    //     } 
+    //     catch (error) {
+    //         setLogError("Failed to create client: " + error?.message ?? '');
+    //     }
+    //     setIsSubmitting(false);
+    // };
 
     useEffect(() => {
         if(canceling) reset()
@@ -52,9 +67,13 @@ const CreateClientForm: React.FC<CreateClientFormProps> = ({
   return (
     <>
     <Form_CreateNew 
-    action={createClient}
-    autoComplete="off"
-    noValidate>
+    action={async formData => {
+        ref.current?.reset()
+        await createClient(formData)
+    }}
+        ref={ref}
+        autoComplete="off"
+        noValidate>
         <label >firstName:
           <Field 
             {...register('firstName')}

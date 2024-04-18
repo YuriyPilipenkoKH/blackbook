@@ -1,6 +1,7 @@
 'use client'
 
 import { SAddNewBtn, SBtn, SBtnDelete, SCancelBtn, SEditBtn, SFlatBtn } from "./Button.styled";
+import { useFormStatus } from 'react-dom'
 
   interface ButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
       children: React.ReactNode;
@@ -8,7 +9,13 @@ import { SAddNewBtn, SBtn, SBtnDelete, SCancelBtn, SEditBtn, SFlatBtn } from "./
 
 
   export  const Btn: React.FC<ButtonProps> = ({ children, ...props }) => {
-    return <SBtn type='button' {...props}> {children}</SBtn>;
+    const {pending} = useFormStatus()
+
+    return (
+        <SBtn type='button' {...props}> 
+            {pending ? 'Process' : children}
+        </SBtn>
+    )
   };
 
   export const BtnDelete: React.FC<ButtonProps> = ({ children, ...props }) => {

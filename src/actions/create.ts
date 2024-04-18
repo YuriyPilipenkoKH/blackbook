@@ -2,7 +2,6 @@
 
 import { connectMongoDB } from "@/lib/mongoDB"
 import Client from "@/models/Client"
-import ClientTypes from "@/models/ClientTypes"
 import { revalidatePath } from "next/cache"
 import {redirect} from "next/navigation"
 
@@ -30,3 +29,4 @@ export const createClient = async(formData: FormData) => {
     revalidatePath("/")
     redirect("/")
 }
+

@@ -1,3 +1,4 @@
+import { emailAvailable } from '@/lib/emailAvailable';
 import { z, ZodType } from 'zod';
 
 export const createClientSchema: ZodType<{
@@ -28,12 +29,12 @@ export const createClientSchema: ZodType<{
     .refine((val) => !val.endsWith('.ru'), {
         message: 'Domain is not supported'
       })
-    // .refine(async (fieldValue) => {
-    //     const result = await emailAvailable(fieldValue);
-    //     return result === undefined;
-    // }, {
-    //     message: 'Email already exists'
-    // })  
+    .refine(async (fieldValue) => {
+        const result = await emailAvailable(fieldValue);
+        return result === undefined;
+    }, {
+        message: 'Email already exists'
+    })  
     ,      
     phone: z
     .string()

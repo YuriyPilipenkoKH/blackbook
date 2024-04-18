@@ -10,7 +10,7 @@ export const emailAvailable = async (fieldValue: string): Promise<string | undef
     try {
 
         // const response = await User.find({email})
-        const response = await fetch(`${process.env.NEXT_PUBLIC_DOMAIN}api/users/grab?email=${fieldValue}`);
+        const response = await fetch(`${process.env.NEXT_PUBLIC_DOMAIN}api/grab?email=${fieldValue}`);
         const data  = await response.json();
         //  console.log('data', data)
  
