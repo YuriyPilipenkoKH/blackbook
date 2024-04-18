@@ -167,7 +167,7 @@ const CreateClientForm: React.FC<CreateClientFormProps> = ({
             {!errors.firstName && !errors.lastName && !errors.email && errors.phone && <div>{errors?.phone.message}</div>}
             </AuthError>
         )}
-        {(logError || phoneError) && (
+        {( logError || phoneError ) && (
             <AuthError className="autherror">
                 {logError && <div>{logError}</div>}
                 {!logError && phoneError && <div>{phoneError}</div>}
@@ -175,7 +175,7 @@ const CreateClientForm: React.FC<CreateClientFormProps> = ({
         )  }
            </div>
         <Btn 
-          className='contact-create w-[80px] h-[36px] rounded-md absolute bottom-[-21px]'
+          className='contact-create w-[80px] h-[36px] rounded-md absolute bottom-[-41px]'
           disabled={isSubmitting || !isDirty || !isValid}
           type="submit"  
           >

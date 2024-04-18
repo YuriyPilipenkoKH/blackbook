@@ -89,7 +89,7 @@ export const Form_CreateNew = styled('form')`
     gap: 12px;
     grid-template-rows: repeat(5, 55px);
     padding: 16px;
-    height: 360px;
+    height: 380px;
 `;
 
 export const Form_Profile = styled('form')`
