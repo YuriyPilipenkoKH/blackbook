@@ -9,6 +9,7 @@ import { Btn } from '../Button/Button';
 import { createClient } from '@/actions/create';
 import { emailAvailable } from '@/lib/emailAvailable';
 import { phoneAvailable } from '@/lib/phoneAvailable';
+import toast from 'react-hot-toast';
 
 
 interface CreateClientFormProps {
@@ -25,7 +26,6 @@ const CreateClientForm: React.FC<CreateClientFormProps> = ({
     const [logError, setLogError] = useState<string>('')
     const [phoneError, setPhoneError] = useState<string>('')
     const ref = useRef<HTMLFormElement>(null)
-    console.log('phoneError',  phoneError)
 
     const {
         register, 
@@ -50,19 +50,6 @@ const CreateClientForm: React.FC<CreateClientFormProps> = ({
         isSubmitting,
     } = formState
 
-    // const onSubmit = async (formData: createClientSchemaType) => {
-    //     setIsSubmitting(true);
-    //     try {
-    //         // Call server action
-    //         await createClient(formData);
-    //         // Reset form after successful submission
-    //         reset();
-    //     } 
-    //     catch (error) {
-    //         setLogError("Failed to create client: " + error?.message ?? '');
-    //     }
-    //     setIsSubmitting(false);
-    // };
 
     useEffect(() => {
         if(canceling) reset()
@@ -98,14 +85,11 @@ const CreateClientForm: React.FC<CreateClientFormProps> = ({
         try {
             const result = await phoneAvailable(phoneValue);
             if (result !== undefined) {
-                // Email already exists, set logError
                 setPhoneError(result);
             } else {
-                // Reset logError if email is available
                 setPhoneError('');
             }
         } catch (error) {
-            // Handle error if emailAvailable function fails
             console.error('Error checking phone number availability:', error);
         }
         }
@@ -121,12 +105,25 @@ const CreateClientForm: React.FC<CreateClientFormProps> = ({
     <Form_CreateNew 
     action={async formData => {
         ref.current?.reset()
-        await createClient(formData)
+        try {
+            await createClient(formData)
+            toast.success(`Client created successfully` )
+            setOpen(false)
+        } 
+        catch (error:any) {
+            toast.error("Creation failed")
+            if(error?.response.data.error){
+                setLogError(error?.response.data.error)
+            }
+            else{
+                setLogError("Something went wrong")
+            }
+        }
     }}
         ref={ref}
         autoComplete="off"
         noValidate>
-        <label >firstName:
+        <label >First name:
           <Field 
             {...register('firstName')}
             type="text"
@@ -134,7 +131,7 @@ const CreateClientForm: React.FC<CreateClientFormProps> = ({
 
           />
         </label >
-        <label >lastName:
+        <label >Last name:
           <Field  
             {...register('lastName')}
             type="text"
@@ -180,7 +177,7 @@ const CreateClientForm: React.FC<CreateClientFormProps> = ({
           type="submit"  
           >
            {( isSubmitting ) 
-            ? "Process" 
+            ? "Submitting" 
             : "Send" }
         </Btn>
       
