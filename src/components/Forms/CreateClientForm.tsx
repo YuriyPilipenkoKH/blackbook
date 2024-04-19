@@ -104,10 +104,10 @@ const CreateClientForm: React.FC<CreateClientFormProps> = ({
     <>
     <Form_CreateNew 
     action={async formData => {
-        ref.current?.reset()
         try {
             await createClient(formData)
             toast.success(`Client created successfully` )
+            ref.current?.reset()
             setOpen(false)
         } 
         catch (error:any) {

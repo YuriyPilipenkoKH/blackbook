@@ -87,9 +87,9 @@ export const SBtnDelete = styled('button')`
 export const SAddNewBtn = styled('button')`
   ${buttonStyles} ;
 
-  width: 300px;
-  color: #14532d;
-  border: 4px solid #14532d;
+  width: 280px;
+  color: #676d69;
+  border: 4px solid #676d69;
   padding: 0.25rem 1rem;
   border-radius: 0.75rem;
   font-weight: 600;

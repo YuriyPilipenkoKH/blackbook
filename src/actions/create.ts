@@ -4,7 +4,6 @@ import { connectMongoDB } from "@/lib/mongoDB"
 import Client from "@/models/Client"
 import { revalidatePath } from "next/cache"
 import {redirect} from "next/navigation"
-import { NextRequest, NextResponse } from "next/server";
 
 
 export const createClient = async(formData: FormData) => {
