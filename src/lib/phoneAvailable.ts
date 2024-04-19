@@ -5,11 +5,17 @@ interface UserData {
     phone: string;
 }
 
-export const phoneAvailable = async (fieldValue: string): Promise<string | undefined> => {
-
+export const phoneAvailable = async (fieldValue: string, phone: string): Promise<string | undefined> => {
+    let BASE_URL = ''
+    if( phone) {
+         BASE_URL = `${process.env.NEXT_PUBLIC_DOMAIN}api/grab/${phone}`
+    }
+    else {
+        BASE_URL = `${process.env.NEXT_PUBLIC_DOMAIN}api/grab`
+    }
     try {
 
-        const response = await fetch(`${process.env.NEXT_PUBLIC_DOMAIN}api/grab?phone=${fieldValue}`);
+        const response = await fetch(`${BASE_URL}?phone=${fieldValue}`);
         const data  = await response.json();
         //  console.log('data', data)
  

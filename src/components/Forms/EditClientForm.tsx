@@ -56,7 +56,10 @@ const EditClientForm: React.FC<EditClientFormProps> = ({
 
 
     useEffect(() => {
-        if(canceling) reset()
+        if(canceling) {
+            reset()
+            setLogError('');
+        }
         }, [canceling])
 
     const emailValue = watch("email");
@@ -82,25 +85,25 @@ const EditClientForm: React.FC<EditClientFormProps> = ({
         checkEmailAvailability();
     }, [emailValue, errors.email]);     
 
-    // const phoneValue = watch("phone");
-    // useEffect(() => {
-    //     const checkPhoneAvailability = async () => {
-    //     if (phoneValue && !errors.phone) {
-    //     try {
-    //         const result = await phoneAvailable(phoneValue);
-    //         if (result !== undefined) {
-    //             setPhoneError(result);
-    //         } else {
-    //             setPhoneError('');
-    //         }
-    //     } catch (error) {
-    //         console.error('Error checking phone number availability:', error);
-    //     }
-    //     }
-    //     };
+    const phoneValue = watch("phone");
+    useEffect(() => {
+        const checkPhoneAvailability = async () => {
+        if (phoneValue && !errors.phone) {
+        try {
+            const result = await phoneAvailable(phoneValue, client?.phone);
+            if (result !== undefined) {
+                setPhoneError(result);
+            } else {
+                setPhoneError('');
+            }
+        } catch (error) {
+            console.error('Error checking phone number availability:', error);
+        }
+        }
+        };
     
-    //     checkPhoneAvailability();
-    // }, [phoneValue, errors.phone]);     
+        checkPhoneAvailability();
+    }, [phoneValue, errors.phone]);     
 
     const editClient = async(formData: FormData) => {
         try {
