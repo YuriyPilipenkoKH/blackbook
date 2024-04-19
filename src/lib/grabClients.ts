@@ -7,7 +7,7 @@ export const grabClients = async () => {
         const clientList = await Client.find()
 
                // Convert _id to string for each document
-               const modifiedClientList = clientList.map(client => {
+               const modifiedClientList:any[] = clientList.map(client => {
                 const modifiedClient = client.toObject();
                 modifiedClient._id = modifiedClient._id.toString(); // Convert ObjectId to string
                 return modifiedClient;

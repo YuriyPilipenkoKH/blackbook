@@ -76,3 +76,11 @@ img {
     width: 35rem;
 }
 }
+
+/* ant-modals */
+.Del_Modal >div>.ant-modal-content >.ant-modal-footer {
+  display: flex;
+  gap: 22px;
+  justify-content: flex-end;
+  margin-top: 24px;
+}

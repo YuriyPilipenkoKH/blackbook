@@ -4,7 +4,7 @@ import { ClientCard, PhWrap } from './ClientsStyles.styled'
 import ClientTypes from '@/models/ClientTypes'
 import { FlatBtn } from '../Button/Button'
 import { FiEdit } from "react-icons/fi";
-import { RiDeleteBin2Fill } from "react-icons/ri";
+import RemoveClientModal from '../Modals/RemoveClientModal'
 interface ClientElementProps {
     client: ClientTypes
 }
@@ -20,11 +20,15 @@ function ClientElement({ client }: ClientElementProps) {
         <FlatBtn>
             <FiEdit/>
         </FlatBtn>
-        <PhWrap className='col-span-2'><span>tel:</span> {client?.phone}</PhWrap>
-        <PhWrap className='col-span-2'><span>email:</span> {client?.email}</PhWrap>
-        <FlatBtn>
-            <RiDeleteBin2Fill/>
-        </FlatBtn>
+        <PhWrap className='col-span-2'>
+            <span>tel:</span> {client?.phone}
+        </PhWrap>
+        <PhWrap className='col-span-2'>
+            <span>email:</span> {client?.email}
+        </PhWrap>
+        <RemoveClientModal
+          client={client}
+        />
 
       
     </ClientCard>

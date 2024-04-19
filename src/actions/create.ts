@@ -26,17 +26,20 @@ export const createClient = async(formData: FormData) => {
         return {
             message: `Client created successfully`,
             success: true,
-            newClient: newClient.toObject() // Convert to plain object
+            newClient: newClient.toObject(), // Convert to plain object
+            lastName: lastName
         };
-
     } 
     catch (error) {
         return {
             message: "Failed to create new Client",
-            success: false
+            success: false,
+            lastName: lastName
         };
     }
-    revalidatePath("/")
-    redirect("/")
+    finally {
+        revalidatePath("/");
+        redirect("/");
+    }
 }
 

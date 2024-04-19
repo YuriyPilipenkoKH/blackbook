@@ -82,7 +82,7 @@ export const SBtnDelete = styled('button')`
   ${buttonStyles} ;
   ${ripple} ;
   background-color: var(--red);
-
+border-radius: 6px;
 `;
 export const SAddNewBtn = styled('button')`
   ${buttonStyles} ;

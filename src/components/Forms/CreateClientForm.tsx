@@ -98,12 +98,7 @@ const CreateClientForm: React.FC<CreateClientFormProps> = ({
         checkPhoneAvailability();
     }, [phoneValue, errors.phone]);     
 
-
-
-  return (
-    <>
-    <Form_CreateNew 
-    action={async formData => {
+    const addClient = async(formData: FormData) => {
         try {
             await createClient(formData)
             toast.success(`Client created successfully` )
@@ -119,7 +114,12 @@ const CreateClientForm: React.FC<CreateClientFormProps> = ({
                 setLogError("Something went wrong")
             }
         }
-    }}
+    }
+
+  return (
+    <>
+    <Form_CreateNew 
+        action={addClient}
         ref={ref}
         autoComplete="off"
         noValidate>
