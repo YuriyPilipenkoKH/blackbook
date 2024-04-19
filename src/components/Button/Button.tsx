@@ -19,7 +19,12 @@ import { useFormStatus } from 'react-dom'
   };
 
   export const BtnDelete: React.FC<ButtonProps> = ({ children, ...props }) => {
-      return <SBtnDelete type='button' {...props}> {children}</SBtnDelete>;
+    const {pending} = useFormStatus()
+      return (
+        <SBtnDelete type='button' {...props}> 
+            {pending ? 'Process' : children}
+        </SBtnDelete>
+      )
   };
 
   export const AddNewBtn: React.FC<ButtonProps> = ({ children, ...props }) => {
