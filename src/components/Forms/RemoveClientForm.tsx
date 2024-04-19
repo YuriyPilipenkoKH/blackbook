@@ -1,20 +1,51 @@
 import { removeClient } from '@/actions/remove'
-import React from 'react'
+import React, { useRef } from 'react'
 import { BtnDelete } from '../Button/Button'
 import ClientTypes from '@/models/ClientTypes'
+import toast from 'react-hot-toast'
+import capitalize from '@/lib/capitalize'
 
 interface RemoveClientFormProps {
     client : ClientTypes
+    setOpen: React.Dispatch<React.SetStateAction<boolean>>;
 }
 
-function RemoveClientForm({client}:RemoveClientFormProps) {
+function RemoveClientForm({client, setOpen}:RemoveClientFormProps) {
+    const ref = useRef<HTMLFormElement>(null)
+    const delClient = async(formData: FormData) => {
+        try {
+        removeClient(formData)
+        .then((response: any) => {
+            console.log(response)
+            const lastName: string | null = response?.lastName;
+            if (lastName) {
+                toast.success(`Client ${capitalize(lastName)} successfully removed`);
+            } else {
+                toast.success(`Client successfully removed`);
+            }
+            ref.current?.reset();
+            setOpen(false);
+        })
+        } 
+        catch (error:any) {
+            toast.error("Removal failed")
+        }
+    }
 
   return (
     <form
-    action={removeClient}
+    action={delClient}
     >
-      <input hidden name='phone' value={client?.phone} />
-      <input hidden name='lastName' value={client?.lastName} />
+      <input 
+        hidden 
+        name='phone' 
+        value={client?.phone} 
+        onChange={()=>{}}/>
+      <input 
+        hidden 
+        name='lastName' 
+        value={client?.lastName} 
+        onChange={()=>{}}/>
         <BtnDelete  type='submit'>
             Del
         </BtnDelete>

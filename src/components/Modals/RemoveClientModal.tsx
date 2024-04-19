@@ -54,6 +54,7 @@ const RemoveClientModal: React.FC<RemoveClientModalProps> = ({client}) => {
         </CancelBtn>,
         <RemoveClientForm 
             client={client}
+            setOpen={setOpen}
             key="form" />
          ]}
     >

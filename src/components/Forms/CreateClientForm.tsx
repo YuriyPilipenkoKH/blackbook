@@ -10,6 +10,7 @@ import { createClient } from '@/actions/create';
 import { emailAvailable } from '@/lib/emailAvailable';
 import { phoneAvailable } from '@/lib/phoneAvailable';
 import toast from 'react-hot-toast';
+import capitalize from '@/lib/capitalize';
 
 
 interface CreateClientFormProps {
@@ -100,10 +101,18 @@ const CreateClientForm: React.FC<CreateClientFormProps> = ({
 
     const addClient = async(formData: FormData) => {
         try {
-            await createClient(formData)
-            toast.success(`Client created successfully` )
-            ref.current?.reset()
-            setOpen(false)
+            createClient(formData)
+            .then((response: any) => {
+                console.log(response)
+                const lastName: string | null = response?.lastName;
+                if (lastName) {
+                    toast.success(`Client ${capitalize(lastName)} created successfully`);
+                } else {
+                    toast.success(`Client created successfully`);
+                }
+                ref.current?.reset();
+                setOpen(false);
+            })
         } 
         catch (error:any) {
             toast.error("Creation failed")
