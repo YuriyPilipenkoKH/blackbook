@@ -29,7 +29,6 @@ export const updateClient = async(formData: FormData) => {
             return {
                 message: `Client not found`,
                 success: false,
-                lastName: lastName
             };
         }
 
@@ -37,15 +36,15 @@ export const updateClient = async(formData: FormData) => {
        const updatedClient = await client.save();
 
         return {
-            message: `Client updated successfully`,
+            message: `${updatedClient?.lastName} updated successfully`,
             success: true,
-            lastName: lastName,
+            lastName: updatedClient?.lastName,
             updatedClient
         };
     } 
     catch (error) {
         return {
-            message: "Failed to update new Client",
+            message: `Failed to update ${lastName}`,
             success: false,
             lastName: lastName
         };
