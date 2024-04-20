@@ -12,6 +12,7 @@ import { phoneAvailable } from '@/lib/phoneAvailable';
 import toast from 'react-hot-toast';
 import capitalize from '@/lib/capitalize';
 import ClientTypes from '@/models/ClientTypes';
+import { updateClient } from '@/actions/edit';
 
 
 interface EditClientFormProps {
@@ -56,14 +57,16 @@ const EditClientForm: React.FC<EditClientFormProps> = ({
 
 
     useEffect(() => {
-        if(canceling) {
-            reset()
-            setLogError('');
-        }
+        reset();
+        setLogError('');
+        ref.current?.reset();
+
         }, [canceling])
 
     const emailValue = watch("email");
     useEffect(() => {
+        setLogError('');
+
         const checkEmailAvailability = async () => {
         if (emailValue && !errors.email) {
         try {
@@ -87,7 +90,10 @@ const EditClientForm: React.FC<EditClientFormProps> = ({
 
     const phoneValue = watch("phone");
     useEffect(() => {
+        setLogError(''); 
+
         const checkPhoneAvailability = async () => {
+            setLogError(''); 
         if (phoneValue && !errors.phone) {
         try {
             const result = await phoneAvailable(phoneValue, client?.phone);
@@ -107,7 +113,7 @@ const EditClientForm: React.FC<EditClientFormProps> = ({
 
     const editClient = async(formData: FormData) => {
         try {
-            createClient(formData)
+            updateClient(formData)
             .then((response: any) => {
                 console.log(response)
                 const lastName: string | null = response?.lastName;
@@ -188,7 +194,7 @@ const EditClientForm: React.FC<EditClientFormProps> = ({
            </div>
         <Btn 
           className='contact-create w-[80px] h-[36px] rounded-md absolute bottom-[-41px]'
-          disabled={isSubmitting || !isDirty || !isValid}
+          disabled={isSubmitting || !isDirty || !isValid || !!logError}
           type="submit"  
           >
            {( isSubmitting ) 

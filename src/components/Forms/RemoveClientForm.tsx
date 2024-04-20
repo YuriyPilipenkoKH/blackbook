@@ -38,8 +38,8 @@ function RemoveClientForm({client, setOpen}:RemoveClientFormProps) {
     >
       <input 
         hidden 
-        name='phone' 
-        value={client?.phone} 
+        name='clientId' 
+        value={client?.clientId} 
         onChange={()=>{}}/>
       <input 
         hidden 
@@ -47,7 +47,7 @@ function RemoveClientForm({client, setOpen}:RemoveClientFormProps) {
         value={client?.lastName} 
         onChange={()=>{}}/>
         <BtnDelete  type='submit'>
-            Del
+            Delete
         </BtnDelete>
     </form>
   )

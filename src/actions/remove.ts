@@ -8,23 +8,23 @@ import {redirect} from "next/navigation"
 
 export const removeClient = async(formData: FormData) => {
 
-    const phone = formData.get('phone')
+    const clientId= formData.get('clientId')
     const lastName = formData.get('lastName')
 
     try {
         await connectMongoDB()
-        await Client.findOneAndDelete({ phone: phone });
+       const clientToRemove = await Client.findOneAndDelete({ clientId });
 
         return {
-            message: `${lastName} removed successfully`,
+            message: `${clientToRemove?.lastName} removed successfully`,
             success: true,
-            lastName: lastName
+            lastName: clientToRemove.lastName
         };
 
     } 
     catch (error) {
         return {
-            message: "Failed to remove",
+            message: `Failed to remove ${lastName}`,
             success: false
         };
     }

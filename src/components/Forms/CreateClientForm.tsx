@@ -53,18 +53,20 @@ const CreateClientForm: React.FC<CreateClientFormProps> = ({
 
 
     useEffect(() => {
-        if(canceling) {
-            reset()
-            setLogError('');
-        }
+        reset();
+        setLogError('');
+        ref.current?.reset();
+
         }, [canceling])
 
     const emailValue = watch("email");
     useEffect(() => {
+        setLogError('');
+
         const checkEmailAvailability = async () => {
         if (emailValue && !errors.email) {
         try {
-            const result = await emailAvailable(emailValue, 'null');
+            const result = await emailAvailable(emailValue, '');
             if (result !== undefined) {
                 // Email already exists, set logError
                 setLogError(result);
@@ -84,10 +86,13 @@ const CreateClientForm: React.FC<CreateClientFormProps> = ({
 
     const phoneValue = watch("phone");
     useEffect(() => {
+        setPhoneError('');
+        
+
         const checkPhoneAvailability = async () => {
         if (phoneValue && !errors.phone) {
         try {
-            const result = await phoneAvailable(phoneValue, 'null');
+            const result = await phoneAvailable(phoneValue, '');
             if (result !== undefined) {
                 setPhoneError(result);
             } else {

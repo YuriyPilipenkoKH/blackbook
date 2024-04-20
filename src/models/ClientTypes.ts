@@ -1,5 +1,6 @@
 type ClientTypes = {
-    _id: string;
+    // _id: string;
+    clientId: string;
     firstName: string;
     lastName: string;
     email: string;

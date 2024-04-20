@@ -4,6 +4,8 @@ import { connectMongoDB } from "@/lib/mongoDB"
 import Client from "@/models/Client"
 import { revalidatePath } from "next/cache"
 import {redirect} from "next/navigation"
+import { customAlphabet } from 'nanoid';
+const nanoid = customAlphabet('abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789', 10);
 
 
 export const createClient = async(formData: FormData) => {
@@ -16,6 +18,7 @@ export const createClient = async(formData: FormData) => {
     try {
         await connectMongoDB()
         const newClient= new Client({
+            clientId: nanoid(),
             firstName,
             lastName,
             email,

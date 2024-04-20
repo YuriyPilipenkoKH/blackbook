@@ -26,7 +26,7 @@ const CreateClientModal: React.FC = () => {
         }, 3000);
     };
     const handleCancel = () => {
-      setCanceling(true)
+      setCanceling(!canceling)
         setOpen(false);
     };
 

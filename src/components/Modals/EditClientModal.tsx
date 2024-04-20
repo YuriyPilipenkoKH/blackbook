@@ -30,7 +30,7 @@ const EditClientModal: React.FC<EditClientModalProps> = ({client}) => {
         }, 3000);
     };
     const handleCancel = () => {
-      setCanceling(true)
+        setCanceling(!canceling)
         setOpen(false);
     };
 
