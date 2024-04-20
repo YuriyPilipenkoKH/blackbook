@@ -8,15 +8,22 @@ import {redirect} from "next/navigation"
 
 export const updateClient = async(formData: FormData) => {
 
+    const clientId = formData.get('clientId')
     const firstName = formData.get('firstName')
     const lastName = formData.get('lastName')
     const email = formData.get('email')
     const phone = formData.get('phone')
-    const updatedFields = {firstName, lastName, email, phone}
+    const updatedFields = {
+        clientId,
+        firstName, 
+        lastName, 
+        email, 
+        phone
+    }
 
     try {
         await connectMongoDB()
-        let client =  await Client.findOne({ phone: phone });
+        let client =  await Client.findOne({ clientId });
   
         if (!client) {
             return {

@@ -5,10 +5,10 @@ interface UserData {
     phone: string;
 }
 
-export const phoneAvailable = async (fieldValue: string, phone: string): Promise<string | undefined> => {
+export const phoneAvailable = async (fieldValue: string, clientId: string): Promise<string | undefined> => {
     let BASE_URL = ''
-    if( phone) {
-         BASE_URL = `${process.env.NEXT_PUBLIC_DOMAIN}api/grab/${phone}`
+    if( clientId) {
+         BASE_URL = `${process.env.NEXT_PUBLIC_DOMAIN}api/grab/${clientId}`
     }
     else {
         BASE_URL = `${process.env.NEXT_PUBLIC_DOMAIN}api/grab`

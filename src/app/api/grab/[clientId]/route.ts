@@ -6,16 +6,16 @@ import { NextRequest, NextResponse } from "next/server";
 
 export async function GET(
     req:NextRequest, 
-    {params}: {params: {phone: string}}) {
+    {params}: {params: {clientId: string}}) {
 
     try {
         await connectMongoDB()
-        const {phone} = params
-        console.log(phone)
+        const {clientId} = params
+        console.log(clientId)
 
         const usersList = await Client.find()
         const filteredUsersList = usersList.filter(
-            (user) => user.phone !== phone
+            (user) => user.clientId !== clientId
         );
 
         return NextResponse.json({

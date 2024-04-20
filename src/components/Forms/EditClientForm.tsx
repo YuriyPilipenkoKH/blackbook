@@ -70,7 +70,7 @@ const EditClientForm: React.FC<EditClientFormProps> = ({
         const checkEmailAvailability = async () => {
         if (emailValue && !errors.email) {
         try {
-            const result = await emailAvailable(emailValue, client?.phone);
+            const result = await emailAvailable(emailValue, client?.clientId);
             if (result !== undefined) {
                 // Email already exists, set logError
                 setLogError(result);
@@ -96,7 +96,7 @@ const EditClientForm: React.FC<EditClientFormProps> = ({
             setLogError(''); 
         if (phoneValue && !errors.phone) {
         try {
-            const result = await phoneAvailable(phoneValue, client?.phone);
+            const result = await phoneAvailable(phoneValue, client?.clientId);
             if (result !== undefined) {
                 setPhoneError(result);
             } else {
@@ -144,6 +144,12 @@ const EditClientForm: React.FC<EditClientFormProps> = ({
         ref={ref}
         autoComplete="off"
         noValidate>
+      <input 
+        hidden 
+        name='clientId' 
+        value={client?.clientId} 
+        onChange={()=>{}}/>
+
         <label >First name:
           <Field 
             {...register('firstName')}
