@@ -84,6 +84,7 @@ export const SBtnDelete = styled('button')`
   background-color: var(--red);
 border-radius: 6px;
 `;
+
 export const SAddNewBtn = styled('button')`
   ${buttonStyles} ;
 
@@ -150,6 +151,29 @@ export const SFlatBtn = styled('button')`
 
   &:hover {
   background-color: #5983679b;
+  }
+  &:disabled{
+  background-color: #888;
+  }
+
+`;
+
+export const SPagBtn = styled('button')`
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  /* width: 30px; */
+  height: 30px;
+  padding: 8px 12px;
+  font-weight: 600;
+  border-radius: 6px; 
+  color:#676d69;
+  border: 2px solid #676d69;;
+  background-color: transparent;
+
+  &:hover {
+  background-color: #5983679b;
+  color:#eee;
   }
   &:disabled{
   background-color: #888;

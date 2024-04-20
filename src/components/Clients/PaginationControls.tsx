@@ -2,6 +2,7 @@
 
 import { useRouter, useSearchParams } from 'next/navigation'
 import React, {FC} from 'react'
+import { PagBtn } from '../Button/Button'
 
 interface PaginationControlsProps {
     hasNextPage: boolean
@@ -22,29 +23,29 @@ const PaginationControls: FC<PaginationControlsProps> = ({
 
   return (
     <div className='flex gap-2'>
-        <button 
-        className='bg-blue-500 text-slate-300 p-1'
+        <PagBtn 
+        // className='bg-blue-500 text-slate-300 p-1'
         // disabled={!hasPrevPage}
         onClick={() => {
             router.push(`/?page=${Number(page) - 1}&perPage=${perPage}`)
         }}
         >
-            prev page
-        </button>
+            prev
+        </PagBtn>
 
         <div>
             {page} / {Math.ceil(10 / Number(perPage))}
         </div>
 
-        <button
-         className='bg-blue-500 text-slate-300 p-1'
+        <PagBtn
+        //  className='bg-blue-500 text-slate-300 p-1'
          // disabled={!hasNextPage}
          onClick={() => {
             router.push(`/?page=${Number(page) + 1}&perPage=${perPage}`)
         }}
         >
-           next page
-        </button>
+           next
+        </PagBtn>
       
     </div>
   )

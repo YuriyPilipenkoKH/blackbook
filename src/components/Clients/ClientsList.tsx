@@ -27,7 +27,7 @@ async function ClientsList({
 
     if(Array.isArray(clients)) {
     return (
-        <>
+        <div>
         <div>{counter}</div>
         <div className="grid gap-4 p-2 place-items-center">
             {entries.map((client:ClientTypes, idx:number) => (
@@ -36,7 +36,7 @@ async function ClientsList({
                 key={idx} />
             ))}
         </div>
-        </>
+        </div>
     );
     }
 

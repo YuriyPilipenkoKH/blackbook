@@ -1,6 +1,6 @@
 'use client'
 
-import { SAddNewBtn, SBtn, SBtnDelete, SCancelBtn, SEditBtn, SFlatBtn } from "./Button.styled";
+import { SAddNewBtn, SBtn, SBtnDelete, SCancelBtn, SEditBtn, SFlatBtn, SPagBtn } from "./Button.styled";
 import { useFormStatus } from 'react-dom'
 
   interface ButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
@@ -30,14 +30,21 @@ import { useFormStatus } from 'react-dom'
   export const AddNewBtn: React.FC<ButtonProps> = ({ children, ...props }) => {
       return <SAddNewBtn type='button' {...props}> {children}</SAddNewBtn>;
   };
+  
   export const CancelBtn: React.FC<ButtonProps> = ({ children, ...props }) => {
       return <SCancelBtn type='button' {...props}> {children}</SCancelBtn>;
   };
+
   export const EditBtn: React.FC<ButtonProps> = ({ children, ...props }) => {
       return <SEditBtn type='button' {...props}> {children}</SEditBtn>;
   };
+
   export const FlatBtn: React.FC<ButtonProps> = ({ children, ...props }) => {
       return <SFlatBtn type='button' {...props}> {children}</SFlatBtn>;
+  };
+
+  export const PagBtn: React.FC<ButtonProps> = ({ children, ...props }) => {
+      return <SPagBtn type='button' {...props}> {children}</SPagBtn>;
   };
 
 

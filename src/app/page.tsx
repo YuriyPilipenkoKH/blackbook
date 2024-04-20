@@ -9,11 +9,14 @@ export default function Home() {
   const hasPrevPage = false; // Provide the hasPrevPage prop
 
   return (
-    <main className= "grid place-items-center py-2">
+    <main className= "grid gap-1 place-items-center py-2">
 
       <CreateClientModal />
-      <ClientsList searchParams={searchParams} /> 
-      <PaginationControls hasNextPage={hasNextPage} hasPrevPage={hasPrevPage} />
+      <ClientsList 
+        searchParams={searchParams} /> 
+      <PaginationControls 
+        hasNextPage={hasNextPage} 
+        hasPrevPage={hasPrevPage} />
     </main>
   );
 }
