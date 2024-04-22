@@ -1,45 +1,39 @@
 import { grabClients } from "@/lib/grabClients";
 import ClientTypes from "@/models/ClientTypes";
 import ClientElement from "./ClientElement";
+import Pagination from "./Pagination";
 
-async function ClientsList({
-    searchParams,
-    }: {
-      searchParams: {[key: string]: string | string[] | undefined}
-    }) {
+interface ClientsListProps {
+    page:number
+}
 
-    const clients:ClientTypes[] | { error: string; }  = await grabClients()
-    let counter = 0
-    if(Array.isArray(clients)) {
-        counter = clients.length
-    }
+export default async function ClientsList({page}:ClientsListProps)  {
 
-        // pagination
-        const page = searchParams && searchParams['page'] ? searchParams['page'] : '1';
-        const perPage = searchParams && searchParams['per_page'] ? searchParams['per_page'] : '3';
-        
-        const start  = (Number(page) -1) * Number(perPage)  // 0, 5, 10
-        const end  = start +  Number(perPage) // 5, 10, 15
-        let entries:ClientTypes[] = []
-        if(Array.isArray(clients)) {
-             entries = clients.slice(start, end)
-        }
 
-    if(Array.isArray(clients)) {
+    const data = await grabClients(page)
+    const counter = data?.clientsCount
+
+    if(Array.isArray(data.plainList)) {
     return (
         <div>
-        <div>{counter}</div>
-        <div className="grid gap-4 p-2 place-items-center">
-            {entries.map((client:ClientTypes, idx:number) => (
-                <ClientElement
-                client={client}
-                key={idx} />
-            ))}
-        </div>
+            <div>{counter}</div>
+            <div className="grid gap-4 p-2 place-items-center">
+                {data.plainList.map((client:ClientTypes, idx:number) => (
+                    <ClientElement
+                    client={client}
+                    key={idx} />
+                ))}
+            </div>
+            <Pagination 
+            totalPages={data?.totalPages}
+            currentPage={page}
+            />
         </div>
     );
     }
 
 }
 
-export default ClientsList;
+
+
+// async function ClientsList(searchParams: {[key: string]: string | string[] | undefined})  {

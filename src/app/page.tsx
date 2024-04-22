@@ -1,22 +1,23 @@
 
 import ClientsList from "@/components/Clients/ClientsList";
-import PaginationControls from "@/components/Clients/PaginationControls";
 import CreateClientModal from "@/components/Modals/CreateClientModal";
 
-export default function Home() {
-  const searchParams = {}; // Provide the searchParams object here
-  const hasNextPage = true; // Provide the hasNextPage prop
-  const hasPrevPage = false; // Provide the hasPrevPage prop
 
+export default function Home({
+  searchParams,
+  }: {
+    searchParams: {[key: string]: string | string[] | undefined}
+  }) {
+  
+  console.log('searchParams', {searchParams})
+      const page = searchParams && searchParams['page'] ? parseInt(searchParams['page'] as string, 10) : 1;
+      console.log('page', page)
   return (
     <main className= "grid gap-1 place-items-center py-2">
 
       <CreateClientModal />
-      <ClientsList 
-        searchParams={searchParams} /> 
-      <PaginationControls 
-        hasNextPage={hasNextPage} 
-        hasPrevPage={hasPrevPage} />
+      <ClientsList  
+      page={page} /> 
     </main>
   );
 }
