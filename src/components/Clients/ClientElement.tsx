@@ -21,12 +21,12 @@ function ClientElement({ client }: ClientElementProps) {
         <div 
             style={PhWrap}
             className='col-span-2'>
-            <span>tel:</span> {client?.phone}
+            <span className='w-[50px]'>tel:</span> {client?.phone}
         </div>
         <div 
             style={PhWrap}
             className='col-span-2'>
-            <span>email:</span> {client?.email}
+            <span className='w-[50px]'>email:</span> {client?.email}
         </div>
         <RemoveClientModal
           client={client}

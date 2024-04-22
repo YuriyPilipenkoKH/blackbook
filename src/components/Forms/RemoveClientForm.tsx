@@ -1,3 +1,5 @@
+'use client'
+
 import { removeClient } from '@/actions/remove'
 import React, { useRef } from 'react'
 import { BtnDelete } from '../Button/Button'

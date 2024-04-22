@@ -1,4 +1,7 @@
-import { SearchBarStyles } from "./serverStyles"
+import { SearchBarStyles,  counterSt } from "./serverStyles"
+import { RiFindReplaceLine } from "react-icons/ri";
+import { RiSettingsLine } from "react-icons/ri";
+import { FlatBtn } from "./Button/Button";
 
 interface SearchBarProps {
     counter:number | undefined
@@ -7,7 +10,17 @@ interface SearchBarProps {
 function SearchBar( {counter} : SearchBarProps) {
   return (
     <div style={SearchBarStyles}>
-        <div>{counter}</div>
+        <div style={counterSt}>{counter}</div>
+        <div>
+            <FlatBtn className="bg-yellow-300">
+                <RiFindReplaceLine />
+            </FlatBtn>
+        </div>
+        <div>
+            <FlatBtn className="bg-orange-400">
+                <RiSettingsLine />
+            </FlatBtn>
+        </div>
       
     </div>
   )

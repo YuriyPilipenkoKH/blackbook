@@ -147,7 +147,7 @@ export const SFlatBtn = styled('button')`
   font-weight: 600;
   border-radius: 50%; 
   border: none;
-  background-color: transparent;
+  /* background-color: transparent; */
 
   &:hover {
   background-color: #5983679b;
