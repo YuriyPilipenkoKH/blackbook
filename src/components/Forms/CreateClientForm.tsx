@@ -28,11 +28,8 @@ const CreateClientForm: React.FC<CreateClientFormProps> = ({
     const [logError, setLogError] = useState<string>('')
     const [phoneError, setPhoneError] = useState<string>('')
     const ref = useRef<HTMLFormElement>(null)
-
     const searchParams = useSearchParams()  
     const params = searchParams.toString()
-
-    console.log('params', params)
 
     const {
         register, 

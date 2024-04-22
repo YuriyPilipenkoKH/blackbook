@@ -9,7 +9,6 @@ interface ClientsListProps {
 
 export default async function ClientsList({page}:ClientsListProps)  {
 
-
     const data = await grabClients(page)
     const counter = data?.clientsCount
 

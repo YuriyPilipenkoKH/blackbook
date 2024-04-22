@@ -10,29 +10,8 @@ interface PaginationProps {
 }
 
 function Pagination({totalPages, currentPage}: PaginationProps) {
-    console.log('totalPages', totalPages, 'currentPage',currentPage)
-    // const router = useRouter()      
-    // const searchParams = useSearchParams()  
+    // console.log('totalPages', totalPages, 'currentPage',currentPage)
 
-    // const page = searchParams.get('page') ?? '1'
-    // const per_page = searchParams.get('per_page') ?? '2'
-    // console.log(page)
-
-    // const handleClickPrev = () => {
-    //     if (currentPage > 1) {
-    //         router.push(`/?page=${currentPage - 1}`);
-            
-    //     }
-    // };
-
-    // const handleClickNext = () => {
-    //     // if (totalPages !== undefined && currentPage < totalPages) { // Check if totalPages is defined
-    //     //     router.push(`/?page=${currentPage + 1}`);
-    //     // }
-    //     if (totalPages !== undefined && currentPage < totalPages) { // Check if totalPages is defined
-    //         router.push(`/?page=${currentPage + 1}`);
-    //     }
-    // };
   return (
     <div className='flex gap-2 items-center justify-center py-2'>
     <Link 

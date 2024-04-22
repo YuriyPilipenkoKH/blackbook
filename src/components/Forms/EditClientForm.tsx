@@ -13,6 +13,7 @@ import toast from 'react-hot-toast';
 import capitalize from '@/lib/capitalize';
 import ClientTypes from '@/models/ClientTypes';
 import { updateClient } from '@/actions/edit';
+import { useSearchParams } from 'next/navigation';
 
 
 interface EditClientFormProps {
@@ -31,6 +32,8 @@ const EditClientForm: React.FC<EditClientFormProps> = ({
     const [logError, setLogError] = useState<string>('')
     const [phoneError, setPhoneError] = useState<string>('')
     const ref = useRef<HTMLFormElement>(null)
+    const searchParams = useSearchParams()  
+    const params = searchParams.toString()
 
     const {
         register, 
@@ -113,7 +116,7 @@ const EditClientForm: React.FC<EditClientFormProps> = ({
 
     const editClient = async(formData: FormData) => {
         try {
-            updateClient(formData)
+            updateClient(formData, params )
             .then((response: any) => {
                 console.log(response)
                 const lastName: string | null = response?.lastName;

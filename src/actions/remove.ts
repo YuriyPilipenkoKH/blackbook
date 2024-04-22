@@ -6,7 +6,7 @@ import { revalidatePath } from "next/cache"
 import {redirect} from "next/navigation"
 
 
-export const removeClient = async(formData: FormData) => {
+export const removeClient = async(formData: FormData, params :string) => {
 
     const clientId= formData.get('clientId')
     const lastName = formData.get('lastName')
@@ -29,8 +29,8 @@ export const removeClient = async(formData: FormData) => {
         };
     }
     finally {
-        revalidatePath("/");
-        redirect("/");
+        revalidatePath(`/?${params}`);
+        redirect(`/?${params}`);
     }
 }
 

@@ -4,6 +4,7 @@ import { BtnDelete } from '../Button/Button'
 import ClientTypes from '@/models/ClientTypes'
 import toast from 'react-hot-toast'
 import capitalize from '@/lib/capitalize'
+import { useSearchParams } from 'next/navigation'
 
 interface RemoveClientFormProps {
     client : ClientTypes
@@ -12,9 +13,12 @@ interface RemoveClientFormProps {
 
 function RemoveClientForm({client, setOpen}:RemoveClientFormProps) {
     const ref = useRef<HTMLFormElement>(null)
+    const searchParams = useSearchParams()  
+    const params = searchParams.toString()
+
     const delClient = async(formData: FormData) => {
         try {
-        removeClient(formData)
+        removeClient(formData, params)
         .then((response: any) => {
             console.log(response)
             const lastName: string | null = response?.lastName;

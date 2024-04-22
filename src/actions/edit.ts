@@ -6,7 +6,7 @@ import { revalidatePath } from "next/cache"
 import {redirect} from "next/navigation"
 
 
-export const updateClient = async(formData: FormData) => {
+export const updateClient = async(formData: FormData, params :string) => {
 
     const clientId = formData.get('clientId')
     const firstName = formData.get('firstName')
@@ -50,8 +50,8 @@ export const updateClient = async(formData: FormData) => {
         };
     }
     finally {
-        revalidatePath("/");
-        redirect("/");
+        revalidatePath(`/?${params}`);
+        redirect(`/?${params}`);
     }
 }
 
