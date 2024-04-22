@@ -168,7 +168,7 @@ export const SPagBtn = styled('button')`
   font-weight: 600;
   border-radius: 6px; 
   color:#676d69;
-  border: 2px solid #676d69;;
+  border: 2px solid #676d69;
   background-color: transparent;
 
   &:hover {

@@ -1,8 +1,8 @@
 import { TfiArrowCircleLeft } from "react-icons/tfi";
 import { TfiArrowCircleRight } from "react-icons/tfi";
 import {  PagBtn } from '../Button/Button';
-import styles from './ClientsStyles.module.css'
 import Link from 'next/link';
+import { highlighted } from "./Pagination.styled";
 
 interface PaginationProps {
     totalPages: number | undefined; // Make totalPages optional
@@ -13,7 +13,7 @@ function Pagination({totalPages, currentPage}: PaginationProps) {
     // console.log('totalPages', totalPages, 'currentPage',currentPage)
 
   return (
-    <div className='flex gap-2 items-center justify-center py-2'>
+    <div className='flex gap-4 items-center justify-center py-2'>
     <Link 
     href={currentPage > 1 ? `/?page=${currentPage - 1}` : ""}>
             <TfiArrowCircleLeft/>
@@ -24,7 +24,10 @@ function Pagination({totalPages, currentPage}: PaginationProps) {
             key={index}
             href={`/?page=${index + 1}`}>
             <PagBtn
-                className={`${currentPage === index+1 ? styles.circle : '' }`}>
+                style={(currentPage === index+1) 
+                    ? highlighted 
+                    :  undefined}
+                 >
                 {index +1}
             </PagBtn>
             </Link>

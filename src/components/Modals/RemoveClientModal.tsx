@@ -1,4 +1,4 @@
-
+'use client'
 import ClientTypes from '@/models/ClientTypes'
 import React, { useState } from 'react'
 import {  CancelBtn, FlatBtn } from '../Button/Button'

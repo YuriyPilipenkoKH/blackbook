@@ -24,8 +24,8 @@ export default async function ClientsList({page}:ClientsListProps)  {
                 ))}
             </div>
             <Pagination 
-            totalPages={data?.totalPages}
-            currentPage={page}
+                totalPages={data?.totalPages}
+                currentPage={page}
             />
         </div>
     );

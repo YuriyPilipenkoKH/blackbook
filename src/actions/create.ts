@@ -5,7 +5,6 @@ import Client from "@/models/Client"
 import { revalidatePath } from "next/cache"
 import {redirect} from "next/navigation"
 import { customAlphabet } from 'nanoid';
-import { NextRequest } from "next/server"
 const nanoid = customAlphabet('abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789', 10);
 
 

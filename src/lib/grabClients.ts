@@ -5,7 +5,7 @@ import ClientTypes from "@/models/ClientTypes";
 export const grabClients = async (page:number) => {
     try {
         await connectMongoDB();
-        const perPage = 3
+        const perPage = 4
         const pageNumber  = page || 1
         const clientsCount = 
             await Client.find({}).countDocuments()

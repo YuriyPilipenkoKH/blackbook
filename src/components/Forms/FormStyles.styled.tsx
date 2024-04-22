@@ -42,9 +42,7 @@ export const antInputStyles = css`
     height: 32px;
     transition: all 0.2s;
 `
-// export const Field = styled('input')`
 
-// `
 interface FieldProps {
     validated: boolean;
 

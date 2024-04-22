@@ -2,8 +2,6 @@
 import capitalize from '@/lib/capitalize'
 import { ClientCard, PhWrap } from './ClientsStyles.styled'
 import ClientTypes from '@/models/ClientTypes'
-import { FlatBtn } from '../Button/Button'
-import { FiEdit } from "react-icons/fi";
 import RemoveClientModal from '../Modals/RemoveClientModal'
 import EditClientModal from '../Modals/EditClientModal'
 interface ClientElementProps {
