@@ -2,6 +2,7 @@ import { grabClients } from "@/lib/grabClients";
 import ClientTypes from "@/models/ClientTypes";
 import ClientElement from "./ClientElement";
 import Pagination from "./Pagination";
+import SearchBar from "../SearchBar";
 
 interface ClientsListProps {
     page:number
@@ -14,9 +15,10 @@ export default async function ClientsList({page}:ClientsListProps)  {
 
     if(Array.isArray(data.plainList)) {
     return (
-        <div>
-            <div>{counter}</div>
-            <div className="grid gap-4 p-2 place-items-center">
+        <div className="flex flex-col justify-center items-center">
+            <SearchBar 
+            counter={counter}/>
+            <div className="grid gap-2 p-2 place-items-center">
                 {data.plainList.map((client:ClientTypes, idx:number) => (
                     <ClientElement
                     client={client}
