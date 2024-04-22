@@ -11,6 +11,7 @@ import { emailAvailable } from '@/lib/emailAvailable';
 import { phoneAvailable } from '@/lib/phoneAvailable';
 import toast from 'react-hot-toast';
 import capitalize from '@/lib/capitalize';
+import { useSearchParams } from 'next/navigation';
 
 
 interface CreateClientFormProps {
@@ -27,6 +28,11 @@ const CreateClientForm: React.FC<CreateClientFormProps> = ({
     const [logError, setLogError] = useState<string>('')
     const [phoneError, setPhoneError] = useState<string>('')
     const ref = useRef<HTMLFormElement>(null)
+
+    const searchParams = useSearchParams()  
+    const params = searchParams.toString()
+
+    console.log('params', params)
 
     const {
         register, 
@@ -109,7 +115,7 @@ const CreateClientForm: React.FC<CreateClientFormProps> = ({
 
     const addClient = async(formData: FormData) => {
         try {
-            createClient(formData)
+            createClient(formData, params )
             .then((response: any) => {
                 console.log(response)
                 const lastName: string | null = response?.lastName;

@@ -1,12 +1,8 @@
-// 'use client'
-
 import { TfiArrowCircleLeft } from "react-icons/tfi";
 import { TfiArrowCircleRight } from "react-icons/tfi";
-import { FlatBtn, PagBtn } from '../Button/Button';
+import {  PagBtn } from '../Button/Button';
 import styles from './ClientsStyles.module.css'
 import Link from 'next/link';
-// import { useRouter, useSearchParams } from 'next/navigation';
-
 
 interface PaginationProps {
     totalPages: number | undefined; // Make totalPages optional
@@ -46,12 +42,12 @@ function Pagination({totalPages, currentPage}: PaginationProps) {
       <div className='flex gap-1'>
         {[...Array(totalPages)].map((_, index)=> (
             <Link 
-                key={index}
-                href={`/?page=${index + 1}`}>
-                <PagBtn
-                    className={`${currentPage === index+1 ? styles.circle : '' }`}>
-                    {index +1}
-                </PagBtn>
+            key={index}
+            href={`/?page=${index + 1}`}>
+            <PagBtn
+                className={`${currentPage === index+1 ? styles.circle : '' }`}>
+                {index +1}
+            </PagBtn>
             </Link>
         ))}
       </div>

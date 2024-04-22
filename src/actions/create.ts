@@ -5,10 +5,12 @@ import Client from "@/models/Client"
 import { revalidatePath } from "next/cache"
 import {redirect} from "next/navigation"
 import { customAlphabet } from 'nanoid';
+import { NextRequest } from "next/server"
 const nanoid = customAlphabet('abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789', 10);
 
 
-export const createClient = async(formData: FormData) => {
+export const createClient = async(formData: FormData, params :string) => {
+
 
     const firstName = formData.get('firstName')
     const lastName = formData.get('lastName')
@@ -41,8 +43,8 @@ export const createClient = async(formData: FormData) => {
         };
     }
     finally {
-        revalidatePath("/");
-        redirect("/");
+        revalidatePath(`/?${params}`);
+        redirect(`/?${params}`);
     }
 }
 
