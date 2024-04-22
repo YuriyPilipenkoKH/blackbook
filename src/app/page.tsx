@@ -1,5 +1,6 @@
 import ClientsList from "@/components/Clients/ClientsList";
 import CreateClientModal from "@/components/Modals/CreateClientModal";
+import { MainWrap } from "@/components/serverStyles";
 
 
 export default function Home({
@@ -13,7 +14,7 @@ export default function Home({
         : 1;
 
   return (
-    <main className= "grid gap-2 place-items-center py-2">
+    <main style={MainWrap}>
 
       <CreateClientModal />
       <ClientsList  

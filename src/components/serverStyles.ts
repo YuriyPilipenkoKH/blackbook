@@ -1,4 +1,4 @@
-export const SearchBarStyles ={
+export const SearchBarStyles = {
     display: 'flex',
     alignItems: 'center',
     justifyContent: 'space-between',
@@ -9,7 +9,6 @@ export const SearchBarStyles ={
 }
 
 export const ClientCard = {
-
     display: 'grid',
     gridTemplateColumns: '50px auto 30px',
     gridTemplateRows: 'repeat(3, 24px)',
@@ -25,7 +24,6 @@ export const PhWrap = {
     display: 'flex',
     gap: '8px',
     height: '24px',
-
 }
 
 export const counterSt = {
@@ -40,7 +38,10 @@ export const counterSt = {
     fontSize: '14px',
 }
 
-
-export const bright400 = {
-    backgroundColor: '#2196f3',
+export const MainWrap = {
+    display: 'grid',
+    gridTemplateRows: '40px auto',
+    gap: '8px',
+    placeItems:'center',
+    padding: '8px',
 }

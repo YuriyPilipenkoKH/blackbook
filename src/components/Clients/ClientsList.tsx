@@ -3,6 +3,7 @@ import ClientTypes from "@/models/ClientTypes";
 import ClientElement from "./ClientElement";
 import Pagination from "./Pagination";
 import SearchBar from "../SearchBar";
+import { CardContainer, ClientsListWrap } from "./Clients.styled";
 
 interface ClientsListProps {
     page:number
@@ -15,10 +16,10 @@ export default async function ClientsList({page}:ClientsListProps)  {
 
     if(Array.isArray(data.plainList)) {
     return (
-        <div className="flex flex-col justify-center items-center">
+        <div style={ClientsListWrap}>
             <SearchBar 
             counter={counter}/>
-            <div className="grid gap-2 p-2 place-items-center">
+            <div style={CardContainer}>
                 {data.plainList.map((client:ClientTypes, idx:number) => (
                     <ClientElement
                     client={client}
