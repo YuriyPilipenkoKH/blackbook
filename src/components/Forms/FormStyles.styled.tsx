@@ -134,6 +134,7 @@ export const Form_Profile = styled('form')`
       & > input{
         outline: none;
         width: 280px;
+        height: 40px;
         background: none;
         color: #eee;
         padding: 4px 60px 4px 18px;
