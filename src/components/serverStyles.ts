@@ -1,4 +1,5 @@
-export const SearchBarStyles = {
+export const SearchBarStyles : React.CSSProperties =  {
+    position: 'relative',
     display: 'flex',
     alignItems: 'center',
     justifyContent: 'space-between',
@@ -8,7 +9,8 @@ export const SearchBarStyles = {
     padding: '2px 12px',
 }
 
-export const ClientCard = {
+export const ClientCard : React.CSSProperties =  {
+
     display: 'grid',
     gridTemplateColumns: '50px auto 30px',
     gridTemplateRows: 'repeat(3, 24px)',

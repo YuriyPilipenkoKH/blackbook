@@ -122,33 +122,32 @@ export const Form_Profile = styled('form')`
 
 
   export const StyledSearchingForm = styled('form')`
-    position: relative;
-    width: 300px;
-
-    @media screen and (min-width: 768px) {
-        display: block;
-    }
+    position: absolute;
+    top: -4px;
+    left: -3px;
+    width: 280px;
 
     & > label  {
         display: flex;
-        gap: 5px;
+        gap: 2px;
 
       & > input{
             outline: none;
-            width: 300px;
+            width: 280px;
             background: none;
             color: #eee;
-            padding: 6px 90px 6px 16px;
-            border: 2px solid #999;
-            border-radius: 6px;
+            padding: 4px 60px 4px 18px;
+            border: 4px solid #676d69;
+            border-radius: 0.75rem;
+            background-color: #0e462d;
       }  
     }
     & > .search_btn_wrap{
         position: absolute;
-        right: 24px;
+        right: 12px;
         top: 8px;
         display: flex;
-        gap: 14px;
+        gap: 8px;
 
         &> button{
             outline: none;

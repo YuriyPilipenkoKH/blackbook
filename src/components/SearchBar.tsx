@@ -10,12 +10,9 @@ interface SearchBarProps {
 
 function SearchBar( {counter} : SearchBarProps) {
   return (
-    <div style={SearchBarStyles}>
+    <div style={SearchBarStyles} >
         <div style={counterSt}>{counter}</div>
-        <div>
-            {/* <FlatBtn className="bg-yellow-300">
-                <RiFindReplaceLine />
-            </FlatBtn> */}
+        <div >
             <SearchingForm/>
         </div>
         <div>

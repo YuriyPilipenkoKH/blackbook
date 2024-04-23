@@ -10,8 +10,8 @@ interface ClientElementProps {
 function ClientElement({ client }: ClientElementProps) {
 
   return (
-    <div style={ClientCard}>
-        <div className='flex gap-2 col-span-2'>
+    <div style={ClientCard} >
+            <div className='flex gap-2 col-span-2'>
             <span>{capitalize(client?.firstName)}</span>
             <span>{capitalize(client?.lastName)}</span>
         </div>

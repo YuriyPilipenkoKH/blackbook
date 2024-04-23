@@ -9,6 +9,7 @@ import { IoCloseCircleOutline } from "react-icons/io5";
 import { StyledSearchingForm } from './FormStyles.styled';
 import { retrieveUserId } from '@/lib/retrieveUserId';
 import { useRouter, useSearchParams } from 'next/navigation';
+import { FlatBtn } from '../Button/Button';
 
 
 function SearchingForm() {
@@ -19,6 +20,7 @@ function SearchingForm() {
     const router = useRouter() 
     const searchParams = useSearchParams()
     const params = searchParams.toString()
+    const newSearchParams = new URLSearchParams(params); // Create a new URLSearchParams object from the current params
     console.log('Params', {params})
 
 
@@ -45,40 +47,45 @@ function SearchingForm() {
 
     const handleInputChange = (e: ChangeEvent<HTMLInputElement>) => {
         const queryValue = e.target.value;
-        const newSearchParams = new URLSearchParams(params); // Create a new URLSearchParams object from the current params
+       
         newSearchParams.set('query', queryValue); // Set the 'query' parameter with the new input value
         const newParamsString = newSearchParams.toString(); // Get the updated search parameters as a string
         router.push(`/?${newParamsString}`);
       };
+    const setEmptyQuery =() => {
+        newSearchParams.delete('query'); // Remove the query parameter
+        const newParamsString = newSearchParams.toString();
+        router.push(`/?${newParamsString}`);
+    }
 
-  const cleaner =() => {
-    reset()
-    // setQuery('')
-  }
-  const shut =() => {
-    reset()
-    // setQuery('')
-    setOpen(false)
-  }
+    const cleaner =() => {
+        reset()
+        setEmptyQuery()
+    }
+    const shut =() => {
+        reset()
+        setEmptyQuery()
+        setOpen(false)
+    }
 
-  useEffect(() => {
-    const fetchData = async () => {
-      const id = await retrieveUserId();
-      setUserId(id);
-    };
+    useEffect(() => {
+        const fetchData = async () => {
+        const id = await retrieveUserId();
+        setUserId(id);
+        };
 
-    fetchData();
-  }, []);
+        fetchData();
+    }, []);
 
   return (
     <>
       { !open && userId &&  (      
-        <button 
-        className='search_icon_btn'
+        <FlatBtn 
+        className='search_icon_btn bg-yellow-300'
         onClick={() => setOpen(true)}
         type='button'>
-           <BiSearchAlt size={25} className='fill-slate-50'/>
-        </button>
+           <BiSearchAlt size={25} className='fill-slate-900'/>
+        </FlatBtn>
       )}
        { open &&  (    
         <StyledSearchingForm
