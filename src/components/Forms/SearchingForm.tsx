@@ -8,7 +8,7 @@ import { BiSearchAlt } from "react-icons/bi";
 import { IoCloseCircleOutline } from "react-icons/io5";
 import { StyledSearchingForm } from './FormStyles.styled';
 import { retrieveUserId } from '@/lib/retrieveUserId';
-import { useRouter, useSearchParams, usePathname } from 'next/navigation';
+import { useRouter, useSearchParams } from 'next/navigation';
 import { FlatBtn } from '../Button/Button';
 import {useDebouncedCallback} from 'use-debounce'
 

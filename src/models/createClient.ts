@@ -1,4 +1,4 @@
-import { emailAvailable } from '@/lib/emailAvailable';
+
 import { z, ZodType } from 'zod';
 
 export const createClientSchema: ZodType<{

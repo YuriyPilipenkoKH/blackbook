@@ -6,8 +6,6 @@ import { AddNewBtn,  CancelBtn } from '../Button/Button';
 import { NewContactModalWrap } from './Modals.styled';
 import CreateClientForm from '../Forms/CreateClientForm';
 
-
-
 const CreateClientModal: React.FC = () => {
 
     const [loading, setLoading] = useState<boolean>(false);
