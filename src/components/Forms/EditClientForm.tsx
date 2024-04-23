@@ -118,7 +118,6 @@ const EditClientForm: React.FC<EditClientFormProps> = ({
         try {
             updateClient(formData, params )
             .then((response: any) => {
-                console.log(response)
                 const lastName: string | null = response?.lastName;
                 if (lastName) {
                     toast.success(`Client ${capitalize(lastName)} edited successfully`);

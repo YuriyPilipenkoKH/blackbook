@@ -11,8 +11,7 @@ export async function GET(
     try {
         await connectMongoDB()
         const {clientId} = params
-        console.log(clientId)
-
+  
         const usersList = await Client.find()
         const filteredUsersList = usersList.filter(
             (user) => user.clientId !== clientId

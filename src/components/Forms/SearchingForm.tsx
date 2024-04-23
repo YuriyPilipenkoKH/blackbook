@@ -24,8 +24,6 @@ function SearchingForm() {
     const params = searchParams.toString()
     const newSearchParams = new URLSearchParams(params)
     const defQuery= searchParams.get('query')?.toString()
-    console.log('Params', {params})
-
 
     // const formRef  = useRef<HTMLDivElement>(null); // Reference to the form div element
     const {
@@ -45,7 +43,6 @@ function SearchingForm() {
         isDirty,
       } = formState
     const onSubmit = async (data: searchSchemaType) => {
-        console.log('data', data)
     }
 
     const handleInputChange = useDebouncedCallback((e: ChangeEvent<HTMLInputElement>) => {

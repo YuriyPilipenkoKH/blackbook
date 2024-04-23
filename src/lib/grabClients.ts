@@ -21,10 +21,15 @@ export const grabClients = async (page:number, query:string) => {
                 { phone: regexPattern },
             ];
         }
-        
+
         // const clientsCount = await Client.find({}).countDocuments()
-        const clientsCount = await Client.countDocuments(searchQuery);
-        const clientList =  await Client.find(searchQuery).select('-_id').limit(perPage).skip((pageNumber - 1) * perPage)
+        const clientsCount = await Client
+                            .countDocuments(searchQuery);
+        const clientList =  await Client
+                            .find(searchQuery)
+                            .select('-_id')
+                            .limit(perPage)
+                            .skip((pageNumber - 1) * perPage)
         const totalPages = Math.ceil(clientsCount / perPage)
         
         // Convert each document to a plain JavaScript object

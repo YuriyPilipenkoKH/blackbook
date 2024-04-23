@@ -18,7 +18,6 @@ export const emailAvailable = async (fieldValue: string, clientId: string): Prom
         // const response = await User.find({email})
         const response = await fetch(`${BASE_URL}?email=${fieldValue}`);
         const data  = await response.json();
-        //  console.log('data', data)
  
         const result = data?.usersList.filter((user: Client) => user?.email === fieldValue)
         return result?.length === 0 ? undefined : 'Email already exists';

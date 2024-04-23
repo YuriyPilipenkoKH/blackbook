@@ -17,8 +17,7 @@ export const phoneAvailable = async (fieldValue: string, clientId: string): Prom
 
         const response = await fetch(`${BASE_URL}?phone=${fieldValue}`);
         const data  = await response.json();
-        //  console.log('data', data)
- 
+   
         const result = data?.usersList.filter((user: Client) => user?.phone === fieldValue)
         return result?.length === 0 ? undefined : 'Phone number already exists';
 

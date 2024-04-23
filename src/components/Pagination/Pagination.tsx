@@ -11,8 +11,6 @@ interface PaginationProps {
 }
 
 function Pagination({totalPages, currentPage}: PaginationProps) {
-    // console.log('totalPages', totalPages, 'currentPage',currentPage)
-
 
   return (
     <div className='flex gap-4 items-center justify-center py-2'>

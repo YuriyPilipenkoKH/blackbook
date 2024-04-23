@@ -22,7 +22,6 @@ function RemoveClientForm({client, setOpen}:RemoveClientFormProps) {
         try {
         removeClient(formData, params)
         .then((response: any) => {
-            console.log(response)
             const lastName: string | null = response?.lastName;
             if (lastName) {
                 toast.success(`Client ${capitalize(lastName)} successfully removed`);

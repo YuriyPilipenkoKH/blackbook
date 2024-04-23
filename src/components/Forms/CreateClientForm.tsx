@@ -114,8 +114,7 @@ const CreateClientForm: React.FC<CreateClientFormProps> = ({
         try {
             createClient(formData, params )
             .then((response: any) => {
-                console.log(response)
-                const lastName: string | null = response?.lastName;
+                    const lastName: string | null = response?.lastName;
                 if (lastName) {
                     toast.success(`Client ${capitalize(lastName)} created successfully`);
                 } else {
