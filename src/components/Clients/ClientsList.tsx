@@ -1,7 +1,7 @@
 import { grabClients } from "@/lib/grabClients";
 import ClientTypes from "@/models/ClientTypes";
 import ClientElement from "./ClientElement";
-import Pagination from "./Pagination";
+import Pagination from "../Pagination/Pagination";
 import SearchBar from "../SearchBar";
 import { CardContainer, ClientsListWrap } from "./Clients.styled";
 
