@@ -85,3 +85,26 @@ img {
   margin-top: 24px;
 }
 
+.AddNew_modal >div > .ant-modal-content{
+  background-color: #eee;
+  padding:22px 16px;
+  width: 320px ;
+
+  @media screen and (min-width: 768px) {
+    width: 520px;
+}
+}
+.AddNew_modal >div, 
+.Del_Modal >div {
+  display: flex;
+  justify-content: center;
+}
+
+.Del_Modal >div > .ant-modal-content{
+  background-color: #eee;
+  width: 320px ;
+
+  @media screen and (min-width: 768px) {
+    width: 520px;
+}
+}

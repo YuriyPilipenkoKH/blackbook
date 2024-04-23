@@ -86,7 +86,7 @@ export const Form_CreateNew = styled('form')`
     display: grid;
     gap: 12px;
     grid-template-rows: repeat(5, 55px);
-    padding: 16px;
+    padding:16px 4px;
     height: 380px;
 `;
 

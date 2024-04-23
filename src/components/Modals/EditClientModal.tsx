@@ -41,7 +41,7 @@ const EditClientModal: React.FC<EditClientModalProps> = ({client}) => {
             <FiEdit/>
       </FlatBtn>
       <Modal
-        className='Edit_modal relative'
+        className='AddNew_modal relative'
         open={open}
         title={( isSubmitting ) 
             ? "Processing" 
