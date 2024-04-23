@@ -1,5 +1,4 @@
 import { SearchBarStyles,  counterSt } from "./serverStyles"
-import { RiFindReplaceLine } from "react-icons/ri";
 import { RiSettingsLine } from "react-icons/ri";
 import { FlatBtn } from "./Button/Button";
 import SearchingForm from "./Forms/SearchingForm";

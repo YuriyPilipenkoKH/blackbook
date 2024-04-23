@@ -2,15 +2,29 @@ import Client from "@/models/Client";
 import { connectMongoDB } from "./mongoDB";
 import ClientTypes from "@/models/ClientTypes";
 
-export const grabClients = async (page:number) => {
+export const grabClients = async (page:number, query:string) => {
     try {
         await connectMongoDB();
         const perPage = 4
         const pageNumber  = page || 1
-        const clientsCount = 
-            await Client.find({}).countDocuments()
-        const clientList = 
-            await Client.find({}).select('-_id').limit(perPage).skip((pageNumber - 1) * perPage)
+
+        // Construct the query to filter clients based on the search query
+        const searchQuery: any = {};
+
+        // If a search query is provided, specify the regex pattern for matching
+        if (query) {
+            const regexPattern = new RegExp(query, 'i');
+            searchQuery.$or = [
+                { firstName: regexPattern },
+                { lastName: regexPattern },
+                { email: regexPattern },
+                { phone: regexPattern },
+            ];
+        }
+        
+        // const clientsCount = await Client.find({}).countDocuments()
+        const clientsCount = await Client.countDocuments(searchQuery);
+        const clientList =  await Client.find(searchQuery).select('-_id').limit(perPage).skip((pageNumber - 1) * perPage)
         const totalPages = Math.ceil(clientsCount / perPage)
         
         // Convert each document to a plain JavaScript object

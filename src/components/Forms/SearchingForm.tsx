@@ -8,9 +8,9 @@ import { BiSearchAlt } from "react-icons/bi";
 import { IoCloseCircleOutline } from "react-icons/io5";
 import { StyledSearchingForm } from './FormStyles.styled';
 import { retrieveUserId } from '@/lib/retrieveUserId';
-import { useRouter, useSearchParams } from 'next/navigation';
+import { useRouter, useSearchParams, usePathname } from 'next/navigation';
 import { FlatBtn } from '../Button/Button';
-
+import {useDebouncedCallback} from 'use-debounce'
 
 function SearchingForm() {
 //   const {  userId, setQuery } = useContext(UserContext as React.Context<UserContextType>);
@@ -18,9 +18,12 @@ function SearchingForm() {
     const [userId, setUserId] = useState<string | undefined>();
      
     const router = useRouter() 
+    // const {replace} = useRouter() 
+    // const pathname = usePathname()
     const searchParams = useSearchParams()
     const params = searchParams.toString()
-    const newSearchParams = new URLSearchParams(params); // Create a new URLSearchParams object from the current params
+    const newSearchParams = new URLSearchParams(params)
+    const defQuery= searchParams.get('query')?.toString()
     console.log('Params', {params})
 
 
@@ -32,7 +35,7 @@ function SearchingForm() {
         reset
        } = useForm<searchSchemaType>({
         defaultValues: {
-            query: '',
+            query: defQuery,
        },
         mode:'all',
         resolver: zodResolver(searchSchema),
@@ -45,13 +48,19 @@ function SearchingForm() {
         console.log('data', data)
     }
 
-    const handleInputChange = (e: ChangeEvent<HTMLInputElement>) => {
+    const handleInputChange = useDebouncedCallback((e: ChangeEvent<HTMLInputElement>) => {
         const queryValue = e.target.value;
-       
-        newSearchParams.set('query', queryValue); // Set the 'query' parameter with the new input value
-        const newParamsString = newSearchParams.toString(); // Get the updated search parameters as a string
-        router.push(`/?${newParamsString}`);
-      };
+       if(queryValue) {
+           newSearchParams.set('query', queryValue); // Set the 'query' parameter with the new input value
+           const newParamsString = newSearchParams.toString(); // Get the updated search parameters as a string
+           router.push(`/?${newParamsString}`);
+       }
+       else{
+        setEmptyQuery()
+       }
+      }, 300)
+
+
     const setEmptyQuery =() => {
         newSearchParams.delete('query'); // Remove the query parameter
         const newParamsString = newSearchParams.toString();
@@ -95,11 +104,11 @@ function SearchingForm() {
         noValidate>
             <label >
             <input
-                {...register('query',
-                 {onChange: handleInputChange}   
-                )}
-                type="text"
-                />
+            {...register('query',
+            {onChange: handleInputChange}   
+            )}
+            type="text"
+            />
             </label>
             <div className='search_btn_wrap absolute'>
               {isDirty && (

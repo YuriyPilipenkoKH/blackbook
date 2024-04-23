@@ -132,14 +132,14 @@ export const Form_Profile = styled('form')`
         gap: 2px;
 
       & > input{
-            outline: none;
-            width: 280px;
-            background: none;
-            color: #eee;
-            padding: 4px 60px 4px 18px;
-            border: 4px solid #676d69;
-            border-radius: 0.75rem;
-            background-color: #0e462d;
+        outline: none;
+        width: 280px;
+        background: none;
+        color: #eee;
+        padding: 4px 60px 4px 18px;
+        border: 4px solid #676d69;
+        border-radius: 0.75rem;
+        background-color: #0e462d;
       }  
     }
     & > .search_btn_wrap{

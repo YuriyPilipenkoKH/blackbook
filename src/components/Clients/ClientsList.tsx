@@ -6,13 +6,15 @@ import SearchBar from "../SearchBar";
 import { CardContainer, ClientsListWrap } from "./Clients.styled";
 
 interface ClientsListProps {
-    page:number
+    page:number 
+    query:string
 }
 
-export default async function ClientsList({page}:ClientsListProps)  {
+export default async function ClientsList({page, query}:ClientsListProps)  {
 
-    const data = await grabClients(page)
+    const data = await grabClients(page, query)
     const counter = data?.clientsCount
+
 
     if(Array.isArray(data.plainList)) {
     return (
@@ -37,5 +39,3 @@ export default async function ClientsList({page}:ClientsListProps)  {
 }
 
 
-
-// async function ClientsList(searchParams: {[key: string]: string | string[] | undefined})  {
