@@ -12,7 +12,7 @@ import { phoneAvailable } from '@/lib/phoneAvailable';
 import toast from 'react-hot-toast';
 import capitalize from '@/lib/capitalize';
 import { useSearchParams } from 'next/navigation';
-
+import {useDebouncedCallback} from 'use-debounce'
 
 interface CreateClientFormProps {
     setIsSubmitting: React.Dispatch<React.SetStateAction<boolean>>;
@@ -63,52 +63,57 @@ const CreateClientForm: React.FC<CreateClientFormProps> = ({
         }, [canceling])
 
     const emailValue = watch("email");
+
+    // Initialize the debounced callback outside of the component
+    const checkEmailAvailability = useDebouncedCallback(async (emailValue: string) => {
+        if (emailValue && !errors.email) {
+            try {
+                const result = await emailAvailable(emailValue, '');
+                if (result !== undefined) {
+                    // Email already exists, set logError
+                    setLogError(result);
+                } else {
+                    // Reset logError if email is available
+                    setLogError('');
+                }
+            } catch (error) {
+                console.error('Error checking email availability:', error);
+            }
+        }
+    }, 800);
+
     useEffect(() => {
         setLogError('');
+        checkEmailAvailability(emailValue);
 
-        const checkEmailAvailability = async () => {
-        if (emailValue && !errors.email) {
-        try {
-            const result = await emailAvailable(emailValue, '');
-            if (result !== undefined) {
-                // Email already exists, set logError
-                setLogError(result);
-            } else {
-                // Reset logError if email is available
-                setLogError('');
-            }
-        } catch (error) {
-            // Handle error if emailAvailable function fails
-            console.error('Error checking email availability:', error);
-        }
-        }
-        };
-    
-        checkEmailAvailability();
-    }, [emailValue, errors.email]);     
+    }, [emailValue, errors.email]);
+
 
     const phoneValue = watch("phone");
+
+
+    const checkPhoneAvailability = useDebouncedCallback(async (phoneValue: string) => {
+    if (phoneValue && !errors.phone) {
+    try {
+        const result = await phoneAvailable(phoneValue, '');
+        if (result !== undefined) {
+            // phone already exists, set logError
+            setPhoneError(result);
+        } else {
+            // Reset logError if phone is available
+            setPhoneError('');
+        }
+    } catch (error) {
+        console.error('Error checking phone number availability:', error);
+    }
+    }
+    }, 800);
+
     useEffect(() => {
         setPhoneError('');
-        
-
-        const checkPhoneAvailability = async () => {
-        if (phoneValue && !errors.phone) {
-        try {
-            const result = await phoneAvailable(phoneValue, '');
-            if (result !== undefined) {
-                setPhoneError(result);
-            } else {
-                setPhoneError('');
-            }
-        } catch (error) {
-            console.error('Error checking phone number availability:', error);
-        }
-        }
-        };
-    
-        checkPhoneAvailability();
+        checkPhoneAvailability(phoneValue);
     }, [phoneValue, errors.phone]);     
+
 
     const addClient = async(formData: FormData) => {
         try {

@@ -12,6 +12,7 @@ import { useRouter, useSearchParams } from 'next/navigation';
 import { FlatBtn } from '../Button/Button';
 import {useDebouncedCallback} from 'use-debounce'
 
+
 function SearchingForm() {
 //   const {  userId, setQuery } = useContext(UserContext as React.Context<UserContextType>);
     const [open, setOpen] = useState(false);
@@ -23,7 +24,7 @@ function SearchingForm() {
     const searchParams = useSearchParams()
     const params = searchParams.toString()
     const newSearchParams = new URLSearchParams(params)
-    const defQuery= searchParams.get('query')?.toString()
+    const defQuery = searchParams.get('query')?.toString()
 
     // const formRef  = useRef<HTMLDivElement>(null); // Reference to the form div element
     const {
@@ -39,7 +40,6 @@ function SearchingForm() {
         resolver: zodResolver(searchSchema),
     })
     const {
-        errors,
         isDirty,
       } = formState
     const onSubmit = async (data: searchSchemaType) => {
@@ -55,7 +55,7 @@ function SearchingForm() {
        else{
         setEmptyQuery()
        }
-      }, 300)
+      }, 400)
 
 
     const setEmptyQuery =() => {

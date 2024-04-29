@@ -194,8 +194,8 @@ const EditClientForm: React.FC<EditClientFormProps> = ({
         )}
         {( logError || phoneError ) && (
             <AuthError className="autherror">
-                {logError && <div>{logError}</div>}
-                {!logError && phoneError && <div>{phoneError}</div>}
+            {logError && <div>{logError}</div>}
+            {!logError && phoneError && <div>{phoneError}</div>}
             </AuthError>
         )  }
            </div>
