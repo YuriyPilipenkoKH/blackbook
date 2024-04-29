@@ -27,6 +27,10 @@ const CreateClientForm: React.FC<CreateClientFormProps> = ({
 }) => {
     const [logError, setLogError] = useState<string>('')
     const [phoneError, setPhoneError] = useState<string>('')
+    const [isFirstNamelValid, setIsFirstNameValid] = useState<boolean>(false);
+    const [isLastNamelValid, setIsLastNameValid] = useState<boolean>(false);
+    const [isEmailValid, setIsEmailValid] = useState<boolean>(false);
+    const [isPhoneValid, setIsPhoneValid] = useState<boolean>(false);
     const ref = useRef<HTMLFormElement>(null)
     const searchParams = useSearchParams()  
     const params = searchParams.toString()
@@ -34,6 +38,7 @@ const CreateClientForm: React.FC<CreateClientFormProps> = ({
     const {
         register, 
         handleSubmit,
+        getValues,
         formState,
         reset,
         watch
@@ -58,12 +63,15 @@ const CreateClientForm: React.FC<CreateClientFormProps> = ({
     useEffect(() => {
         reset();
         setLogError('');
+        setIsFirstNameValid(false)
+        setIsLastNameValid(false)
+        setIsEmailValid(false)
+        setIsPhoneValid(false)
         ref.current?.reset();
 
         }, [canceling])
 
     const emailValue = watch("email");
-
     // Initialize the debounced callback outside of the component
     const checkEmailAvailability = useDebouncedCallback(async (emailValue: string) => {
         if (emailValue && !errors.email) {
@@ -88,10 +96,7 @@ const CreateClientForm: React.FC<CreateClientFormProps> = ({
 
     }, [emailValue, errors.email]);
 
-
     const phoneValue = watch("phone");
-
-
     const checkPhoneAvailability = useDebouncedCallback(async (phoneValue: string) => {
     if (phoneValue && !errors.phone) {
     try {
@@ -139,6 +144,30 @@ const CreateClientForm: React.FC<CreateClientFormProps> = ({
             }
         }
     }
+    useEffect(() => {
+        handleGetValue()
+    }, [])
+
+
+    const handleGetValue = () => {
+        const values = getValues(); // Call getValues to retrieve form values
+        console.log('Form values:', values);
+
+        if (values.firstName && !errors.firstName) {
+            setIsFirstNameValid(true)
+        }
+        if (values.lastName && !errors.lastName) {
+            setIsLastNameValid(true)
+        }
+        if (values.email && !errors.email) {
+            setIsEmailValid(true)
+        }
+        if (values.phone && !errors.phone) {
+            setIsPhoneValid(true)
+        }
+
+    };
+
 
   return (
     <>
@@ -149,34 +178,42 @@ const CreateClientForm: React.FC<CreateClientFormProps> = ({
         noValidate>
         <label >First name:
           <Field 
-            {...register('firstName')}
+            {...register('firstName',
+            {onChange: () => handleGetValue()}
+            )}
             type="text"
-            validated ={!errors.firstName ? true : false}
-
+            validated = { isFirstNamelValid }
+            error = { !!errors.firstName  }
           />
         </label >
         <label >Last name:
           <Field  
-            {...register('lastName')}
+            {...register('lastName',
+            {onChange: () => handleGetValue()}
+            )}
             type="text"
-            validated ={!errors.lastName ? true : false}
-
+            validated = { isLastNamelValid }
+            error = { !!errors.lastName  }
           />
         </label >
-        <label >email:
+        <label >Email:
           <Field 
-            {...register('email')}
+            {...register('email',
+            {onChange: () => handleGetValue()}
+            )}
             type="text"
-            validated ={(!errors.email && !logError)? true : false}
-    
+            validated = { isEmailValid }
+            error = { !!errors.email || !!logError }
           />
         </label >
-        <label >phone:
+        <label >Phone:
           <Field  
-            {...register('phone')}
+            {...register('phone',
+            {onChange: () => handleGetValue()}
+            )}
             type="text"
-            validated ={(!errors.phone && !phoneError) ? true : false}
-       
+            validated = { isPhoneValid }
+            error = { !!errors.phone || !!phoneError }
           />
         </label >
         <div>

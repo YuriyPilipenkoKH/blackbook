@@ -44,20 +44,17 @@ export const antInputStyles = css`
 `
 
 interface FieldProps {
-    validated: boolean;
-
-  }
-//   #f5154dcd` : `#2196f3cc` 
-// rgba(70, 90, 126, 0.4)
-//rgb(232, 240, 254),
+  validated: boolean 
+  error: boolean 
+}
 
   export const Field = styled('input', {
     shouldForwardProp: (prop: string) =>
-      isPropValid(prop) && !['validated'].includes(prop),
+      isPropValid(prop) && !['validated', 'error'].includes(prop),
   })<FieldProps>`
     ${antInputStyles};
-    ${({ validated }) => ({
-      borderColor: validated  ? `#2196f3cc` : `#f5154dcd` ,
+    ${({ validated ,error}) => ({
+      borderColor: error ? `#f5154dcd` : validated  ? `#04de04` : '#4099e6',
       outline: 'none' ,
     })}
   `;
