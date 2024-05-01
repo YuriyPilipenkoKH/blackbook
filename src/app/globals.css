@@ -108,3 +108,31 @@ img {
     width: 520px;
 }
 }
+
+
+.happy{
+  display: flex;
+  gap: 50px;
+  padding: 22px 70px;
+  font-style: italic;
+  font-size: 40px;
+  font-weight: 600;
+  color: #ff0;
+  border: 2px solid #ff0;
+  border-radius: 22px;
+  /* margin-top: 50px; */
+}
+.h-wr{
+  padding: 30px;
+  border: 2px solid #ccc;
+  /* border-radius: 42px; */
+  /* background-color:#fff; */
+}
+.circle-r{
+  border-radius: 50%;
+  padding: 4px;
+  position: absolute;
+  bottom: -12px;
+  right: 140px;
+  border: 2px solid #ff0;
+}
