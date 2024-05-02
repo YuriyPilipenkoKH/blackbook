@@ -18,21 +18,21 @@ export default async function ClientsList({page, query}:ClientsListProps)  {
 
     if(Array.isArray(data.plainList)) {
     return (
-        <div style={ClientsListWrap}>
-            <SearchBar 
-            counter={counter}/>
-            <div style={CardContainer}>
-                {data.plainList.map((client:ClientTypes, idx:number) => (
-                    <ClientElement
-                    client={client}
-                    key={idx} />
-                ))}
-            </div>
-            <Pagination 
-                totalPages={data?.totalPages}
-                currentPage={page}
-            />
-        </div>
+			<div style={ClientsListWrap}>
+				<SearchBar 
+				counter={counter}/>
+					<div style={CardContainer}>
+						{data.plainList.map((client:ClientTypes, idx:number) => (
+							<ClientElement
+							client={client}
+							key={idx} />
+						))}
+					</div>
+				<Pagination 
+						totalPages={data?.totalPages}
+						currentPage={page}
+				/>
+			</div>
     );
     }
 
