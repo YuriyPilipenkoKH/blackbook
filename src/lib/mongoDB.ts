@@ -1,6 +1,6 @@
 import mongoose from "mongoose";
 
-let db: mongoose.Connection; // Define connection outside the function
+let db: mongoose.Connection // Define connection outside the function
 
 export const connectMongoDB =async () => {
 

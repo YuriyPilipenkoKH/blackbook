@@ -1,6 +1,6 @@
 import Client from "@/models/Client";
-import { connectMongoDB } from "./mongoDB";
 import ClientTypes from "@/models/ClientTypes";
+import { connectMongoDB } from "./mongoDB";
 
 export const grabClients = async (page:number, query:string) => {
     try {
