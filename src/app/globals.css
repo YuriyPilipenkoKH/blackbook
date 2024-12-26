@@ -94,6 +94,12 @@ img {
     width: 520px;
 }
 }
+.AddNew_modal >div > .ant-modal-content >.ant-modal-header>.ant-modal-title {
+  background-color: #eee;
+}
+.Del_Modal >div > .ant-modal-content >.ant-modal-header>.ant-modal-title {
+  background-color: #eee;
+}
 .AddNew_modal >div, 
 .Del_Modal >div {
   display: flex;
